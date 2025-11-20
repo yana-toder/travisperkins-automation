@@ -1,45 +1,92 @@
-import {test, expect} from '@playwright/test'
+import {test, expect, Page} from '@playwright/test'
 
 const searchValue = 'garden'
 
 test('add product to quote list flow', async ({page}) => {
   await page.goto('/')
 
+  // accepted all
   await page.locator('[id="onetrust-accept-btn-handler"]').click()
+  // close address
+  await page.getByTestId('close-button').click()
 
-  await page.locator('data-test-id=close-button').click()
+  // search flow
+  await searchProduct(page, searchValue)
 
-  await page.locator('data-test-id=input-component').fill(searchValue)
-
-  await page.locator('data-test-id=suggested-search').first().click()
-
-  await expect(page.locator('h1')).toContainText(searchValue)
-
-  //go to the product page and comparing title
-
-  const productTitleOnCard = await page
-    .locator('data-test-id=product-card-title')
-    .innerText()
-
-  await page.locator('data-test-id=product').click()
-
-  const productTitleOnPage = await page
-    .locator('data-test-id=product-name')
-    .innerText()
-
-  expect((await productTitleOnCard).trim()).toEqual(
-    (await productTitleOnPage).trim()
-  )
+  //open product and compare titles
+  const productTitleOnCard = await openProductFromList(page)
+  await verifyProductTitle(page, productTitleOnCard)
 
   //add product to the quote list
-  await page.locator('data-test-id=add-to-quote-list').click()
+  await addToQuoteList(page)
 
-  expect(page.locator('data-test-id=quote-list-button')).toBeVisible()
+  //open quote list
+  await openQuoteList(page)
+  await verifyProductTitle(page, productTitleOnCard)
 
-  await page.locator('data-test-id=quote-list-button').click()
-
-  // verify product appears in quote list
-  await expect(page.locator('data-test-id=product-name')).toContainText(
-    productTitleOnPage
+  //remove product from quote list
+  await page.getByTestId('remove-button').click()
+  await expect(page.getByTestId('empty-quote-list')).toContainText(
+    'Your quote list is empty'
   )
 })
+
+test('check menu list', async ({page}) => {
+  await page.goto('/')
+
+  // accepted all
+  await page.locator('[id="onetrust-accept-btn-handler"]').click()
+  // close address
+  await page.getByTestId('close-button').click()
+
+  let expectedMenuItems = [
+    'Building Materials',
+    'Timber & Sheet Materials',
+    'Gardens & Landscaping',
+    'Doors, Windows & Joinery',
+    'Decorating & Interiors',
+    'Plumbing',
+    'Heating',
+    'Bathrooms',
+    'Electrical & Lighting',
+    'Fixings & Adhesives',
+    'Tools & Workwear',
+    'Benchmarx Kitchens',
+    'Hire',
+    'Deals',
+  ]
+
+  // loaded menu
+  const menuLinks = page.getByTestId('header-nav-menu')
+
+  //check each menu item
+  for (const item of expectedMenuItems)
+    await expect(menuLinks.filter({hasText: item})).toBeVisible()
+})
+
+// functions
+
+async function searchProduct(page: Page, searchValue: string) {
+  await page.getByTestId('input-component').fill(searchValue)
+  await page.getByTestId('suggested-search').first().click()
+  await expect(page.locator('h1')).toContainText(searchValue)
+}
+
+async function openProductFromList(page: Page) {
+  const title = await page.getByTestId('product-card-title').innerText()
+  await page.getByTestId('product').click()
+  return title.trim()
+}
+
+async function verifyProductTitle(page: Page, title: string) {
+  await expect(page.getByTestId('product-name')).toContainText(title)
+}
+
+async function addToQuoteList(page: Page) {
+  await page.getByTestId('add-to-quote-list').click()
+  await expect(page.getByTestId('quote-list-button')).toBeVisible()
+}
+
+async function openQuoteList(page: Page) {
+  await page.getByTestId('quote-list-button').click()
+}

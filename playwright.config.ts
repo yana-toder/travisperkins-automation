@@ -25,7 +25,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://www.travisperkins.co.uk/',
     headless: false,
-
+    testIdAttribute: 'data-test-id',
     trace: 'on-first-retry',
   },
 
