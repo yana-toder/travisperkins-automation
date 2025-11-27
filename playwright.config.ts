@@ -15,18 +15,17 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  //  timeout: 10000,
+  //  globalTimeout: 30000,
   use: {
     baseURL: 'https://www.travisperkins.co.uk/',
     headless: false,
     testIdAttribute: 'data-test-id',
     trace: 'on-first-retry',
+    //actionTimeout: 4000,
   },
 
   /* Configure projects for major browsers */
