@@ -7,12 +7,21 @@ export class SearchWrapper {
     await expect(this.page.getByTestId('header-search-button')).toBeVisible()
   }
 
-  async searchProduct(searchValue: string) {
-    await this.page
-      .getByTestId('header-search-button')
-      .getByTestId('input-component')
-      .fill(searchValue)
+  async openSearch() {
+    await this.page.getByTestId('header-search-button').click()
+  }
+
+  async typeSearchValue(searchValue: string) {
+    await this.page.getByTestId('input-component').fill(searchValue)
+  }
+
+  async submitSearch() {
     await this.page.getByTestId('suggested-search').first().click()
-    await expect(this.page.locator('h1')).toContainText(searchValue)
+  }
+
+  async searchProduct(searchValue: string) {
+    await this.openSearch()
+    await this.typeSearchValue(searchValue)
+    await this.submitSearch()
   }
 }

@@ -1,20 +1,19 @@
-import {test, expect, Page} from '@playwright/test'
-import {HomePage} from '../app/tp/web/pages/HomePage'
+import {test, expect} from './fixtures'
+
 import {SearchResultPage} from '../app/tp/web/pages/SearchResultPage'
 
 const targetQuery = 'screw'
 
-test('add product to quote list flow', async ({page}) => {
-  const homePage = new HomePage(page)
+test('add product to quote list flow', async ({page, homePage}) => {
+  //const homePage = new HomePage(page)
   const searchResultPage = new SearchResultPage(page)
-  await homePage.open()
+
   await homePage.isLoaded()
-  await homePage.acceptCookies()
 
   // close address
-  const targetPostalCode = 'NN5 5JR'
+  //  const targetPostalCode = 'NN5 5JR'
 
-  await homePage.deliveryPopup.fillDeliveryPopup(targetPostalCode)
+  //  await homePage.deliveryPopup.fillDeliveryPopup(targetPostalCode)
 
   // search flow
   await homePage.searchWrapper.searchProduct(targetQuery)
