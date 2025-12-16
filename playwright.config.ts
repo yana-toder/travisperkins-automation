@@ -1,4 +1,5 @@
 import {defineConfig, devices} from '@playwright/test'
+import {setgroups} from 'process'
 
 /**
  * Read environment variables from file.
@@ -32,8 +33,14 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: {...devices['Desktop Chrome']},
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: './tests/setup.cookies.json',
+      },
+      dependencies: ['setup'],
     },
+    // Setup project
+    {name: 'setup', testMatch: /.*\.setup\.ts/},
   ],
 
   /* Run your local dev server before starting the tests */

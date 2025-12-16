@@ -10,11 +10,6 @@ test('add product to quote list flow', async ({page, homePage}) => {
 
   await homePage.isLoaded()
 
-  // close address
-  //  const targetPostalCode = 'NN5 5JR'
-
-  //  await homePage.deliveryPopup.fillDeliveryPopup(targetPostalCode)
-
   // search flow
   await homePage.searchWrapper.searchProduct(targetQuery)
 

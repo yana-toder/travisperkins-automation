@@ -11,12 +11,6 @@ export const test = base.extend<Fixtures>({
 
     await home.open()
 
-    await home.acceptCookies()
-
-    const targetPostalCode = 'NN5 5JR'
-
-    await home.deliveryPopup.fillDeliveryPopup(targetPostalCode)
-
     await use(home)
   },
 })
