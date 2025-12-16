@@ -31,16 +31,16 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project
+    {name: 'setup', testMatch: /.*\.setup\.ts/},
     {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: './tests/setup.cookies.json',
+        storageState: 'playwright/.auth/cookies.json',
       },
       dependencies: ['setup'],
     },
-    // Setup project
-    {name: 'setup', testMatch: /.*\.setup\.ts/},
   ],
 
   /* Run your local dev server before starting the tests */

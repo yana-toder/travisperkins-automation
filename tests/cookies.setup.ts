@@ -1,7 +1,7 @@
 import {test as setup, expect} from '@playwright/test'
 import path from 'path'
 
-const cookiesFile = path.join(__dirname, '../tests/fixtures.ts')
+const cookiesFile = path.join(__dirname, '../playwright/.auth/cookies.json')
 
 setup('setup: accept cookies and close address modal', async ({page}) => {
   await page.goto('/')
@@ -11,7 +11,6 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
 
   //
   const deliveryPopup = page.getByTestId('delivery-address-popup')
-  await deliveryPopup.waitFor({state: 'visible', timeout: 5000})
 
   const targetPostalCode = 'NN5 5JR'
 
@@ -30,6 +29,9 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
   // Apply
   await page.getByTestId('apply-delivery-address').click()
 
+  await page.waitForResponse(
+    'https://www.travisperkins.co.uk/int-api/cookie-policy-version'
+  )
   // Save state
   await page.context().storageState({
     path: cookiesFile,
