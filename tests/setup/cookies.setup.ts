@@ -9,9 +9,7 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
   // Accept cookies
   await page.click('#onetrust-accept-btn-handler')
 
-  //
   const deliveryPopup = page.getByTestId('delivery-address-popup')
-
   const targetPostalCode = 'NN5 5JR'
 
   // Enter value in popup
@@ -28,11 +26,6 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
 
   // Apply
   await page.getByTestId('apply-delivery-address').click()
-
-  await page.waitForResponse(
-    'https://www.travisperkins.co.uk/int-api/cookie-policy-version'
-  )
-  // Save state
   await page.context().storageState({
     path: cookiesFile,
   })

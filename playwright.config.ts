@@ -1,17 +1,6 @@
 import {defineConfig, devices} from '@playwright/test'
 import {setgroups} from 'process'
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -19,22 +8,22 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  //  timeout: 10000,
-  //  globalTimeout: 30000,
   use: {
     baseURL: 'https://www.travisperkins.co.uk/',
     headless: false,
     testIdAttribute: 'data-test-id',
     trace: 'on-first-retry',
-    //actionTimeout: 4000,
   },
-
-  /* Configure projects for major browsers */
   projects: [
-    // Setup project
-    {name: 'setup', testMatch: /.*\.setup\.ts/},
+    {
+      name: 'setup',
+      testDir: './tests/setup',
+      testMatch: /.*\.setup\.ts/,
+    },
     {
       name: 'chromium',
+      testDir: './tests/e2e',
+      testMatch: /.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/cookies.json',
@@ -42,11 +31,4 @@ export default defineConfig({
       dependencies: ['setup'],
     },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 })

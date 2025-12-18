@@ -1,0 +1,600 @@
+{
+  "cookies": [
+    {
+      "name": "AUTH_SESSION_ID",
+      "value": "MGEyNDkyMGEtODI1OS00ZmY5LWJlN2QtZDRlMjIwNTcwYjEzLjZlRUhvd3cxc3dzMHRmS3FkTjZzRHpqRlFBZUl4Y2UyUWxFQXlYeVNDMExqbU1MTVJldWpaVVB4ZVpUWnYyMUp5QjFkcnI0Ry1fMU1KTENpWXVhSzB3.keycloak-2-39436",
+      "domain": "auth.travisperkins.co.uk",
+      "path": "/auth/realms/public-prod/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KC_AUTH_SESSION_HASH",
+      "value": "yM4YEOFCpo3CNmH0gLvUABEp35FJTGHM8dHp5SDKoII",
+      "domain": "auth.travisperkins.co.uk",
+      "path": "/auth/realms/public-prod/",
+      "expires": 1765991747.53765,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "SERVERID",
+      "value": "f8a822bd65df550587fdc3192baa2c1f|858f5dc638b48bf224238639793cd5a3",
+      "domain": "api.content.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1765993547.28727,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_cfuvid",
+      "value": "_mEPGfkyxYKMrdP0R4o1JSyxBoOWskUX9ZjpmXNBTzU-1765991687906-0.0.1.1-604800000",
+      "domain": ".api.content.travisperkins.co.uk",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "travisperkins-cart",
+      "value": "02e1bc25-6aad-4ede-842b-082aeefa9df8",
+      "domain": "www.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1768583688,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "travisperkins-hire-cart",
+      "value": "BSK-25-8586-7491-8591-7084",
+      "domain": "www.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1768583688,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "OptanonAlertBoxClosed",
+      "value": "2025-12-17T17:14:48.821Z",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1797527688,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cookieconsent_dismissed",
+      "value": "yes",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "isLoggedIn",
+      "value": "false",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "OptanonConsent",
+      "value": "isGpcEnabled=0&datestamp=Wed+Dec+17+2025+18%3A14%3A48+GMT%2B0100+(Central+European+Standard+Time)&version=202410.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&genVendors=&consentId=b51b88f1-116d-4bde-b005-84f63d9493c9&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0004%3A1%2CC0003%3A1%2CC0005%3A1&intType=1",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1797527688,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_br_uid_2",
+      "value": "uid%3D259596702462%3Av%3D13.0%3Ats%3D1765991689369%3Ahc%3D1",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551689.369557,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ttp",
+      "value": "36yvanzo8ovydGMr4onwpjWPo9I",
+      "domain": ".tiktok.com",
+      "path": "/",
+      "expires": 1773767690.461168,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.1635907373.1765991691",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767690,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ki_t",
+      "value": "1765991690818%3B1765991690818%3B1765991690818%3B1%3B1",
+      "domain": "www.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551690.819458,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ki_r",
+      "value": "",
+      "domain": "www.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551690.822962,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mt.v",
+      "value": "2.1266976675.1765991690883",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551690.930518,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.2.1765991690982.474329256660995578",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767694,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUkiIKC4xpEgq6Va2v9PedtsAkyvO5i8jyyym3lyNQNczhyxJAem2vxPdT3v",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1799687691.057943,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.3.1477318955.1765991690",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551691.138218,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gid",
+      "value": "GA1.3.242871761.1765991691",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1766078091,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gat_UA-12729192-1",
+      "value": "1",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1765991751,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_tt_enable_cookie",
+      "value": "1",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767691,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ttp",
+      "value": "01KCPMXD0KK9XBA0BADB484ADE_.tt.2",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767691,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_hjSessionUser_652110",
+      "value": "eyJpZCI6IjFiN2ZiNjdiLTVmNDYtNTQ0OS1hYzM2LWUwMGE2YjZiZGEwYyIsImNyZWF0ZWQiOjE3NjU5OTE2OTE0MDAsImV4aXN0aW5nIjpmYWxzZX0=",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1797527691,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_hjSession_652110",
+      "value": "eyJpZCI6Ijc3NDIwOWRkLTNlNzUtNGMyOS1hMTQyLWUzNjZjMDkxMDdlYyIsImMiOjE3NjU5OTE2OTE0MDIsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MX0=",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1765993491,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "personalization_id",
+      "value": "\"v1_6lF/9BtRWzekdhbTpVh5Ug==\"",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1800551691.410124,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_uetsid",
+      "value": "e5f0d320db6b11f08e2493ce4a163408",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1766078091,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_uetvid",
+      "value": "e5f1c490db6b11f08a7f0d3f1cb475a8",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1799687691,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "muc_ads",
+      "value": "58c58313-5ae4-4266-b0c2-0cd10eead10e",
+      "domain": ".t.co",
+      "path": "/",
+      "expires": 1800551691.474905,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "xnpe_91fbfa66-9b4f-11ed-bdf9-76d30a65ebac",
+      "value": "c5a511a3-a2fa-4955-8b34-e6a595b7fdef",
+      "domain": "api.uk.exponea.com",
+      "path": "/",
+      "expires": 1800551691.944131,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__exponea_etc__",
+      "value": "c5a511a3-a2fa-4955-8b34-e6a595b7fdef",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551691.587112,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "1DD262DF6C8F6AC8162E741A6D7E6BFA",
+      "domain": ".bing.com",
+      "path": "/",
+      "expires": 1799687693.425989,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__exponea_time2__",
+      "value": "0.5918130874633789",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1765995291,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CLID",
+      "value": "7cecdcf0c68842c7813e797e41c5dc83.20251217.20261217",
+      "domain": "www.clarity.ms",
+      "path": "/",
+      "expires": 1797527691.859007,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_clck",
+      "value": "1k2htg2%5E2%5Eg1x%5E0%5E2177",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1797527692,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".c.bing.com",
+      "path": "/",
+      "expires": 1766596493.426139,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SRM_B",
+      "value": "1DD262DF6C8F6AC8162E741A6D7E6BFA",
+      "domain": ".c.bing.com",
+      "path": "/",
+      "expires": 1799687693.426175,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SM",
+      "value": "C",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "1DD262DF6C8F6AC8162E741A6D7E6BFA",
+      "domain": ".clarity.ms",
+      "path": "/",
+      "expires": 1799687692.501407,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": 1766596492.501507,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ANONCHK",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": 1765992292.501544,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_clsk",
+      "value": "127dgx4%5E1765991692959%5E1%5E1%5Ej.clarity.ms%2Fcollect",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1766078092,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ttcsid",
+      "value": "1765991691299::8lqmTMat24vmjBZgwNt9.1.1765991694564.0",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767694,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ttcsid_C90NHPU6LEB679H46P6G",
+      "value": "1765991691288::e8SoVTgabxguio4zB3I5.1.1765991694564.0",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1773767694,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_6EM3847CY9",
+      "value": "GS2.1.s1765991690$o1$g0$t1765991694$j56$l0$h1440414416",
+      "domain": ".travisperkins.co.uk",
+      "path": "/",
+      "expires": 1800551694.582599,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "preselectedDeliveryPostcode",
+      "value": "NN5 5JR",
+      "domain": "www.travisperkins.co.uk",
+      "path": "/",
+      "expires": 1797527694,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.travisperkins.co.uk",
+      "localStorage": [
+        {
+          "name": "lscache-scls::state_c2b44cf8-3990-44c7-a284-b572dd2cd137-cacheexpiration",
+          "value": "29434634"
+        },
+        {
+          "name": "_uetvid_exp",
+          "value": "Mon, 11 Jan 2027 17:14:51 GMT"
+        },
+        {
+          "name": "lscache-scls::sc-leg-22175",
+          "value": "\"1\""
+        },
+        {
+          "name": "__exponea_last_session_start_timestamp__",
+          "value": "1765991691069"
+        },
+        {
+          "name": "topicsLastReferenceTime",
+          "value": "1765991694600"
+        },
+        {
+          "name": "__exponea_last_session_ping_timestamp__",
+          "value": "1765991691069"
+        },
+        {
+          "name": "lscache-scls::sc-leg-22175-cacheexpiration",
+          "value": "29434634"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"creationTimeMs\":1765991690547},\"expires\":1773767690547}}"
+        },
+        {
+          "name": "_uetsid",
+          "value": "e5f0d320db6b11f08e2493ce4a163408"
+        },
+        {
+          "name": "lscache-scls::machine_guid",
+          "value": "\"#::ච塃Ÿಆɐ↡㐧だ☣ᤲ⡨汇䁇ᄬƸŒဧऀ歱䣔䀠 \""
+        },
+        {
+          "name": "lscache-scls::machine_guid-cacheexpiration",
+          "value": "29434634"
+        },
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1765991690964"
+        },
+        {
+          "name": "sessionBasketVersion",
+          "value": "0"
+        },
+        {
+          "name": "_uetsid_exp",
+          "value": "Thu, 18 Dec 2025 17:14:51 GMT"
+        },
+        {
+          "name": "lscache-scls::session_id_c2b44cf8-3990-44c7-a284-b572dd2cd137",
+          "value": "\"#::ᙡ⑀䅘ૅƀᚡ㓐ᖠᄣ԰Ⴁ氠〦ᑢ¬ƹ穀শ㸢䐣㈱價۴  \""
+        },
+        {
+          "name": "sessionId",
+          "value": "{\"value\":\"8ccd1466-97ab-4551-9408-fa2ad5979cba\",\"expiry\":1765993487878}"
+        },
+        {
+          "name": "_uetvid",
+          "value": "e5f1c490db6b11f08a7f0d3f1cb475a8"
+        },
+        {
+          "name": "lastExternalReferrer",
+          "value": "empty"
+        },
+        {
+          "name": "lscache-scls::machine_id-cacheexpiration",
+          "value": "29434634"
+        },
+        {
+          "name": "preselectedDeliveryAddress",
+          "value": "{\"line1\":\"\",\"line2\":\"\",\"line3\":\"\",\"town\":\"West Northamptonshire\",\"postalCode\":\"NN5 5JR\"}"
+        },
+        {
+          "name": "lscache-scls::session_id_c2b44cf8-3990-44c7-a284-b572dd2cd137-cacheexpiration",
+          "value": "29433224"
+        },
+        {
+          "name": "lscache-scls::machine_id",
+          "value": "\"#::ᆣ堻Ÿ৥捈Ơ☣ᣄ棠墠 \""
+        },
+        {
+          "name": "lscache-scls::state_c2b44cf8-3990-44c7-a284-b572dd2cd137",
+          "value": "\"#::ᯡࡓ䅬昩゛ČҰӤƐ䁹Äаৠᕨ䁌Ô˲䠵䀨䂁┡Ч〠怬⥡ĸ͓婰ʅកੀ۩想哇⢰Tအ䘡⸠人ဲ吤碁. Ì删ۮᕠ↵䑃嶵❌Y氧ᥟ┠̃ࠔ㤸u᪖Wస 䚁Ӱ͸怰焠ὸ獚䘪抨䬤ʀং墩唠ֽ䄿欹仭擂勝ㄠ斕㯛䫦ԩ㋲夻䰝缎ゔ]ಀ།ᠣ吘⏂愎䒴婬畮͞剫ಠƜ⬓ᡏ࿆䌠ῌ婓ᮘ†㊐㭔Ỿ栠 \""
+        }
+      ]
+    },
+    {
+      "origin": "https://s.salecycle.com",
+      "localStorage": [
+        {
+          "name": "lscache-scls::machine_guid-cacheexpiration",
+          "value": "34689194"
+        },
+        {
+          "name": "lscache-scls::sc-leg-22175",
+          "value": "\"1\""
+        },
+        {
+          "name": "lscache-scls::session_id_c2b44cf8-3990-44c7-a284-b572dd2cd137",
+          "value": "\"#::ᙡ⑀䅘ૅƀᚡ㓐ᖠᄣ԰Ⴁ氠〦ᑢ¬ƹ穀শ㸢䐣㈱價۴  \""
+        },
+        {
+          "name": "lscache-scls::machine_id-cacheexpiration",
+          "value": "34689194"
+        },
+        {
+          "name": "lscache-scls::sc-leg-22175-cacheexpiration",
+          "value": "30469994"
+        },
+        {
+          "name": "lscache-scls::session_id_c2b44cf8-3990-44c7-a284-b572dd2cd137-cacheexpiration",
+          "value": "29433224"
+        },
+        {
+          "name": "lscache-scls::machine_id",
+          "value": "\"#::ᆣ堻Ÿ৥捈Ơ☣ᣄ棠墠 \""
+        },
+        {
+          "name": "lscache-scls::machine_guid",
+          "value": "\"#::ච塃Ÿಆɐ↡㐧だ☣ᤲ⡨汇䁇ᄬƸŒဧऀ歱䣔䀠 \""
+        }
+      ]
+    }
+  ]
+}
