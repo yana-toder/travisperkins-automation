@@ -1,7 +1,7 @@
 import {test as setup, expect} from '@playwright/test'
 import path from 'path'
 
-const cookiesFile = path.join(__dirname, '../playwright/.auth/cookies.json')
+const cookiesFile = path.join(__dirname, 'playwright/.auth/cookies.json')
 
 setup('setup: accept cookies and close address modal', async ({page}) => {
   await page.goto('/')
@@ -10,6 +10,7 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
   await page.click('#onetrust-accept-btn-handler')
 
   const deliveryPopup = page.getByTestId('delivery-address-popup')
+  await expect(deliveryPopup).toBeVisible()
   const targetPostalCode = 'NN5 5JR'
 
   // Enter value in popup
@@ -26,7 +27,14 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
 
   // Apply
   await page.getByTestId('apply-delivery-address').click()
+
+  await expect(page.getByTestId('delivery-address')).toContainText(
+    targetPostalCode
+  )
+
   await page.context().storageState({
     path: cookiesFile,
   })
+
+  console.log(await page.context().storageState())
 })
