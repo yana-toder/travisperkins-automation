@@ -33,11 +33,6 @@ test('add product to quote list flow', async ({page, homePage}) => {
 test('check menu list', async ({page}) => {
   await page.goto('/')
 
-  // accepted all
-  await page.locator('[id="onetrust-accept-btn-handler"]').click()
-  // close address
-  await page.getByTestId('close-button').click()
-
   let expectedMenuItems = [
     'Building Materials',
     'Timber & Sheet Materials',

@@ -29,9 +29,9 @@ setup('setup: accept cookies and close address modal', async ({page}) => {
   // Apply
   await page.getByTestId('apply-delivery-address').click()
 
-  await page.waitForResponse(
-    'https://www.travisperkins.co.uk/int-api/cookie-policy-version'
-  )
+  //  await page.waitForResponse(
+  //    'https://www.travisperkins.co.uk/int-api/cookie-policy-version'
+  //  )
   // Save state
   await page.context().storageState({
     path: cookiesFile,
