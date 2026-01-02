@@ -1,11 +1,20 @@
 import {test, expect} from '@playwright/test'
 import {HomePage} from '../app/tp/web/pages/HomePage'
 import {SearchResultPage} from '../app/tp/web/pages/SearchResultPage'
+import {ProductPage} from '../app/tp/web/pages/ProductPage'
+import {AddToCollectionPopup} from '../app/tp/web/components/AddToCollectionPopup'
+import {CartPage} from '../app/tp/web/pages/CartPage'
+import {CollectionBranchPopup} from '../app/tp/web/components/CollectionBranchPopup'
 
 test('cart checkout flow', async ({page}) => {
   const homePage = new HomePage(page)
   const searchResultPage = new SearchResultPage(page)
+  const productPage = new ProductPage(page)
+  const addToCollectionPopup = new AddToCollectionPopup(page)
+  const cartPage = new CartPage(page)
+  const collectionBranchPopup = new CollectionBranchPopup(page)
 
+  //open web
   await homePage.open()
   await homePage.isLoaded()
 
@@ -18,51 +27,37 @@ test('cart checkout flow', async ({page}) => {
   await searchResultPage.isLoaded()
   await searchResultPage.verifyProductTitleOnPDP(productTitle)
 
-  //add to collection
-  const productDetailContainer = page.getByTestId('product-detail')
-  await expect(
-    productDetailContainer.getByTestId('add-to-collection-btn')
-  ).toBeVisible()
-  const productPriceOnPDP = await page.getByTestId('main-price').innerText()
-  const priceValue = productPriceOnPDP.match(/\d+([.,]\d{2})?/)![0]
-  await productDetailContainer.getByTestId('add-to-collection-btn').click()
+  //loaded product page
+  await productPage.isLoaded()
+
+  //get price
+  const priceValue = await productPage.getProductPriceValue()
+  await productPage.addToCollection()
 
   //fill collection branch
   const targetPostalCode = 'NN5 5JR'
-  await page
-    .getByTestId('location-input-wr')
-    .getByTestId('input-component')
-    .fill(targetPostalCode)
-  await page
-    .getByTestId('address-item')
-    .filter({hasText: targetPostalCode})
-    .click()
+  await collectionBranchPopup.fillCollectionBranchPopup(targetPostalCode)
 
-  await page.getByTestId('branch-details-wrapper').first().click()
+  //add to collection
+  await addToCollectionPopup.openPopup()
+  await addToCollectionPopup.isLoaded()
 
-  //add to collect
+  //check product title in popup
+  const productTitleInPopup = await addToCollectionPopup.getProductTitle()
+  expect(productTitleInPopup).toContain(productTitle)
+  //check product price in popup
+  const priceValueInPopup = await addToCollectionPopup.getProductPriceValue()
+  expect(priceValueInPopup).toContain(priceValue)
 
-  await productDetailContainer.getByTestId('add-to-collection-btn').click()
+  //go to cart
+  await cartPage.open()
+  await cartPage.isLoaded()
 
-  await expect(page.getByTestId('add-to-basket-popup-wrapper')).toBeVisible()
+  //check product title on cart page
+  const productTitleOnCartPage = await cartPage.getProductTitle()
+  expect(productTitleOnCartPage).toContain(productTitle)
 
-  await expect(
-    page.getByTestId('add-to-basket-popup-wrapper').getByTestId('product-name')
-  ).toContainText(productTitle)
-  await expect(
-    page.getByTestId('add-to-basket-popup-wrapper').getByTestId('product-price')
-  ).toContainText(priceValue)
-
-  //go to basket
-  await page.getByTestId('go-to-basket-button').click()
-  await expect(page.getByTestId('basket-page-wr')).toBeVisible()
-  await expect(
-    page.getByTestId('mini-basket-icon').getByTestId('miniBasket-basket-count')
-  ).toBeVisible()
-  await expect(
-    page.getByTestId('product-info').getByTestId('product-name')
-  ).toContainText(productTitle)
-  await expect(page.getByTestId('product-info').locator('h5')).toContainText(
-    priceValue
-  )
+  //check product price on cart page
+  const priceValueOnCartPage = await cartPage.getProductPriceValue()
+  expect(priceValueOnCartPage).toContain(priceValue)
 })
