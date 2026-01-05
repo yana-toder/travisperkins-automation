@@ -1,4 +1,5 @@
 import {expect, Page} from '@playwright/test'
+import {extractPriceValue} from '../utils/price.utils'
 
 export class ProductPage {
   constructor(private page: Page) {}
@@ -13,8 +14,7 @@ export class ProductPage {
 
   async getProductPriceValue(): Promise<string> {
     const productPrice = await this.page.getByTestId('main-price').innerText()
-    const priceValue = productPrice.match(/\d+([.,]\d{2})?/)![0]
-    return priceValue
+    return extractPriceValue(productPrice)
   }
 
   async addToCollection(): Promise<void> {

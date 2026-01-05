@@ -1,4 +1,5 @@
 import {expect, Page} from '@playwright/test'
+import {extractPriceValue} from '../utils/price.utils'
 
 export class AddToCollectionPopup {
   constructor(private page: Page) {}
@@ -28,7 +29,6 @@ export class AddToCollectionPopup {
       .getByTestId('add-to-basket-popup-wrapper')
       .getByTestId('product-price')
       .innerText()
-    const priceValue = productPrice.match(/\d+([.,]\d{2})?/)![0]
-    return priceValue
+    return extractPriceValue(productPrice)
   }
 }
