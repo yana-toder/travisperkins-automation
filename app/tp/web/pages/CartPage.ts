@@ -1,4 +1,5 @@
 import {expect, Page} from '@playwright/test'
+import {extractPriceValue} from '../utils/price.utils'
 
 export class CartPage {
   constructor(private page: Page) {}
@@ -28,7 +29,6 @@ export class CartPage {
       .getByTestId('product-info')
       .locator('h5')
       .innerText()
-    const priceValue = productPrice.match(/\d+([.,]\d{2})?/)![0]
-    return priceValue
+    return extractPriceValue(productPrice)
   }
 }
