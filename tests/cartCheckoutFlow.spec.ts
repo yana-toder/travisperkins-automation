@@ -5,6 +5,7 @@ import {ProductPage} from '../app/tp/web/pages/ProductPage'
 import {AddToCollectionPopup} from '../app/tp/web/components/AddToCollectionPopup'
 import {CartPage} from '../app/tp/web/pages/CartPage'
 import {CollectionBranchPopup} from '../app/tp/web/components/CollectionBranchPopup'
+import {CheckoutPage} from '../app/tp/web/pages/CheckoutPage'
 
 test('cart checkout flow', async ({page}) => {
   const homePage = new HomePage(page)
@@ -13,6 +14,7 @@ test('cart checkout flow', async ({page}) => {
   const addToCollectionPopup = new AddToCollectionPopup(page)
   const cartPage = new CartPage(page)
   const collectionBranchPopup = new CollectionBranchPopup(page)
+  const checkoutPage = new CheckoutPage(page)
 
   //open web
   await homePage.open()
@@ -45,6 +47,7 @@ test('cart checkout flow', async ({page}) => {
   //check product title in popup
   const productTitleInPopup = await addToCollectionPopup.getProductTitle()
   expect(productTitleInPopup).toContain(productTitle)
+
   //check product price in popup
   const priceValueInPopup = await addToCollectionPopup.getProductPriceValue()
   expect(priceValueInPopup).toContain(priceValue)
@@ -60,4 +63,23 @@ test('cart checkout flow', async ({page}) => {
   //check product price on cart page
   const priceValueOnCartPage = await cartPage.getProductPriceValue()
   expect(priceValueOnCartPage).toContain(priceValue)
+
+  // go to checkout page
+  await cartPage.goToCheckout()
+
+  //loaded checkout page
+  await checkoutPage.isLoaded()
+
+  //fill user data
+  await checkoutPage.fillCustomerDetails()
+
+  //check filled user data
+  await checkoutPage.verifyUserDetailsFilled()
+
+  //save and check user data
+  await checkoutPage.saveUserData()
+  const {title, price} = await checkoutPage.getProductSummary()
+  expect(title).toContain(productTitle)
+  expect(price).toContain(priceValue)
+  await checkoutPage.verifyCollectionBranchAddress(targetPostalCode)
 })

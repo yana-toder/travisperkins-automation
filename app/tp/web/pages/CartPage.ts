@@ -31,4 +31,9 @@ export class CartPage {
       .innerText()
     return extractPriceValue(productPrice)
   }
+
+  async goToCheckout(): Promise<void> {
+    await this.page.getByTestId('continue-to-checkout-page').click()
+    await expect(this.page.getByTestId('secure-header')).toBeVisible()
+  }
 }
