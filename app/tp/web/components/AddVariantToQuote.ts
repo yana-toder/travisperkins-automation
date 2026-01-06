@@ -7,7 +7,7 @@ export class AddVariantToQuote {
     await expect(this.page.getByTestId('product-detail')).toBeVisible()
   }
 
-  async openQuoteList(page: Page) {
-    await page.getByTestId('quote-list-button').click()
+  async openQuoteList(): Promise<void> {
+    await this.page.getByTestId('quote-list-button').click()
   }
 }

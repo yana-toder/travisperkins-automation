@@ -1,17 +1,17 @@
-import {HomePage} from '../app/tp/web/pages/HomePage'
 import {test as base} from '@playwright/test'
+import {Application} from '../app/tp/web/Application'
 
 type Fixtures = {
-  homePage: HomePage
+  app: Application
 }
 
 export const test = base.extend<Fixtures>({
-  homePage: async ({page}, use) => {
-    const home = new HomePage(page)
+  app: async ({page}, use) => {
+    const app = new Application(page)
 
-    await home.open()
+    await app.home.open()
 
-    await use(home)
+    await use(app)
   },
 })
 

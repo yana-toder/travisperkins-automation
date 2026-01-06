@@ -1,13 +1,7 @@
-import {test, expect} from '@playwright/test'
-import {Application} from '../app/tp/web/Application'
-import {AddToCollectionPopup} from '../app/tp/web/components/AddToCollectionPopup'
-import {CollectionBranchPopup} from '../app/tp/web/components/CollectionBranchPopup'
+import {test, expect} from './fixtures'
 import {generateUser} from '../app/tp/web/utils/user.factory'
 
-test('cart checkout flow', async ({page}) => {
-  const app = new Application(page)
-  const addToCollectionPopup = new AddToCollectionPopup(page)
-  const collectionBranchPopup = new CollectionBranchPopup(page)
+test('cart checkout flow', async ({app}) => {
   const user = await generateUser()
 
   //open web
@@ -32,18 +26,19 @@ test('cart checkout flow', async ({page}) => {
 
   //fill collection branch
   const targetPostalCode = 'NN5 5JR'
-  await collectionBranchPopup.fillCollectionBranchPopup(targetPostalCode)
+  await app.collectionBranchPopup.fillCollectionBranchPopup(targetPostalCode)
 
   //add to collection
-  await addToCollectionPopup.openPopup()
-  await addToCollectionPopup.isLoaded()
+  await app.addToCollectionPopup.openPopup()
+  await app.addToCollectionPopup.isLoaded()
 
   //check product title in popup
-  const productTitleInPopup = await addToCollectionPopup.getProductTitle()
+  const productTitleInPopup = await app.addToCollectionPopup.getProductTitle()
   expect(productTitleInPopup).toContain(productTitle)
 
   //check product price in popup
-  const priceValueInPopup = await addToCollectionPopup.getProductPriceValue()
+  const priceValueInPopup =
+    await app.addToCollectionPopup.getProductPriceValue()
   expect(priceValueInPopup).toContain(priceValue)
 
   //go to cart
