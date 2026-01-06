@@ -1,5 +1,5 @@
 import {expect, Page} from '@playwright/test'
-
+import {User} from '../types/User'
 export class CheckoutPage {
   constructor(private page: Page) {}
 
@@ -8,69 +8,43 @@ export class CheckoutPage {
     await expect(this.page.getByTestId('contact-information')).toBeVisible()
   }
 
-  //save generated data
-  private user!: {
-    fullName: string
-    emailAddress: string
-    mobileNumber: string
+  private getContactInput(testId: string) {
+    return this.page.getByTestId(testId).getByTestId('input-text-field')
   }
 
-  async fillCustomerDetails(): Promise<void> {
-    const {faker} = await import('@faker-js/faker')
-    const mobileNumber = `07${faker.number.int({
-      min: 100000000,
-      max: 999999999,
-    })}`
-    this.user = {
-      fullName: faker.person.fullName(),
-      emailAddress: faker.internet.email(),
-      mobileNumber: mobileNumber,
-    }
-
-    await this.page
-      .getByTestId('contact-info-name')
-      .getByTestId('input-text-field')
-      .fill(this.user.fullName)
-    await this.page
-      .getByTestId('contact-info-email')
-      .getByTestId('input-text-field')
-      .fill(this.user.emailAddress)
-
-    await this.page
-      .getByTestId('contact-info-phone')
-      .getByTestId('input-text-field')
-      .fill(this.user.mobileNumber)
+  async fillUserDetails(user: User): Promise<void> {
+    await this.getContactInput('contact-info-name').fill(user.fullName)
+    await this.getContactInput('contact-info-email').fill(user.emailAddress)
+    await this.getContactInput('contact-info-phone').fill(user.mobileNumber)
   }
 
-  async verifyUserDetailsFilled(): Promise<void> {
-    await expect(
-      this.page.getByTestId('contact-info-name').getByTestId('input-text-field')
-    ).toHaveValue(this.user.fullName)
+  async verifyUserDetailsFilled(user: User): Promise<void> {
+    await expect(this.getContactInput('contact-info-name')).toHaveValue(
+      user.fullName
+    )
 
-    await expect(
-      this.page
-        .getByTestId('contact-info-email')
-        .getByTestId('input-text-field')
-    ).toHaveValue(this.user.emailAddress)
+    await expect(this.getContactInput('contact-info-email')).toHaveValue(
+      user.emailAddress
+    )
 
-    await expect(
-      this.page
-        .getByTestId('contact-info-phone')
-        .getByTestId('input-text-field')
-    ).toHaveValue(this.user.mobileNumber)
+    await expect(this.getContactInput('contact-info-phone')).toHaveValue(
+      user.mobileNumber
+    )
   }
 
-  async saveUserData(): Promise<void> {
+  async saveUserData() {
     await this.page.getByTestId('contact-save-button').click()
+  }
 
+  async getContactCardInfo(user: User): Promise<void> {
     await expect(this.page.getByTestId('card-full-name')).toContainText(
-      this.user.fullName
+      user.fullName
     )
     await expect(this.page.getByTestId('card-email')).toContainText(
-      this.user.emailAddress
+      user.emailAddress
     )
     await expect(this.page.getByTestId('card-phone')).toContainText(
-      this.user.mobileNumber
+      user.mobileNumber
     )
   }
 
