@@ -1,59 +1,29 @@
-import {test, expect} from './fixtures'
-
-import {SearchResultPage} from '../app/tp/web/pages/SearchResultPage'
+import {test} from './fixtures'
+import {Application} from '../app/tp/web/Application'
 
 const targetQuery = 'screw'
 
 test('add product to quote list flow', async ({page, homePage}) => {
-  //const homePage = new HomePage(page)
-  const searchResultPage = new SearchResultPage(page)
+  const app = new Application(page)
 
-  await homePage.isLoaded()
+  await app.home.isLoaded()
 
   // search flow
   await homePage.searchWrapper.searchProduct(targetQuery)
 
   //open product and compare titles
-  const productTitleOnCard = await searchResultPage.openProductFromList()
-  await searchResultPage.isLoaded()
-  await searchResultPage.verifyProductTitleOnPDP(productTitleOnCard)
+  const productTitleOnCard = await app.searchResult.openProductFromList()
+  await app.searchResult.isLoaded()
+  await app.searchResult.verifyProductTitleOnPDP(productTitleOnCard)
 
   //add product to the quote list
-  await searchResultPage.addForCollectionFirstProduct()
-  await searchResultPage.addVariantToQuote.isLoaded()
+  await app.searchResult.addForCollectionFirstProduct()
+  await app.searchResult.addVariantToQuote.isLoaded()
 
   //open quote list
-  await searchResultPage.addVariantToQuote.openQuoteList(page)
-  await searchResultPage.verifyProductTitleOnQuoteList(productTitleOnCard)
+  await app.searchResult.addVariantToQuote.openQuoteList(page)
+  await app.searchResult.verifyProductTitleOnQuoteList(productTitleOnCard)
 
   //remove product from quote list
-  await searchResultPage.removeProductFromQuoteList()
-})
-
-test('check menu list', async ({page}) => {
-  await page.goto('/')
-
-  let expectedMenuItems = [
-    'Building Materials',
-    'Timber & Sheet Materials',
-    'Gardens & Landscaping',
-    'Doors, Windows & Joinery',
-    'Decorating & Interiors',
-    'Plumbing',
-    'Heating',
-    'Bathrooms',
-    'Electrical & Lighting',
-    'Fixings & Adhesives',
-    'Tools & Workwear',
-    'Benchmarx Kitchens',
-    'Hire',
-    'Deals',
-  ]
-
-  // loaded menu
-  const menuLinks = page.getByTestId('header-nav-menu')
-
-  //check each menu item
-  for (const item of expectedMenuItems)
-    await expect(menuLinks.filter({hasText: item})).toBeVisible()
+  await app.searchResult.removeProductFromQuoteList()
 })

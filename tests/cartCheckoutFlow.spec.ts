@@ -1,42 +1,34 @@
 import {test, expect} from '@playwright/test'
-import {HomePage} from '../app/tp/web/pages/HomePage'
-import {SearchResultPage} from '../app/tp/web/pages/SearchResultPage'
-import {ProductPage} from '../app/tp/web/pages/ProductPage'
+import {Application} from '../app/tp/web/Application'
 import {AddToCollectionPopup} from '../app/tp/web/components/AddToCollectionPopup'
-import {CartPage} from '../app/tp/web/pages/CartPage'
 import {CollectionBranchPopup} from '../app/tp/web/components/CollectionBranchPopup'
-import {CheckoutPage} from '../app/tp/web/pages/CheckoutPage'
 import {generateUser} from '../app/tp/web/utils/user.factory'
 
 test('cart checkout flow', async ({page}) => {
-  const homePage = new HomePage(page)
-  const searchResultPage = new SearchResultPage(page)
-  const productPage = new ProductPage(page)
+  const app = new Application(page)
   const addToCollectionPopup = new AddToCollectionPopup(page)
-  const cartPage = new CartPage(page)
   const collectionBranchPopup = new CollectionBranchPopup(page)
-  const checkoutPage = new CheckoutPage(page)
   const user = await generateUser()
 
   //open web
-  await homePage.open()
-  await homePage.isLoaded()
+  await app.home.open()
+  await app.home.isLoaded()
 
   // search flow
   const targetQuery = 'screw'
-  await homePage.searchWrapper.searchProduct(targetQuery)
+  await app.home.searchWrapper.searchProduct(targetQuery)
 
   //open product and compare titles
-  const productTitle = await searchResultPage.openProductFromList()
-  await searchResultPage.isLoaded()
-  await searchResultPage.verifyProductTitleOnPDP(productTitle)
+  const productTitle = await app.searchResult.openProductFromList()
+  await app.searchResult.isLoaded()
+  await app.searchResult.verifyProductTitleOnPDP(productTitle)
 
   //loaded product page
-  await productPage.isLoaded()
+  await app.product.isLoaded()
 
   //get price
-  const priceValue = await productPage.getProductPriceValue()
-  await productPage.addToCollection()
+  const priceValue = await app.product.getProductPriceValue()
+  await app.product.addToCollection()
 
   //fill collection branch
   const targetPostalCode = 'NN5 5JR'
@@ -55,36 +47,36 @@ test('cart checkout flow', async ({page}) => {
   expect(priceValueInPopup).toContain(priceValue)
 
   //go to cart
-  await cartPage.open()
-  await cartPage.isLoaded()
+  await app.cart.open()
+  await app.cart.isLoaded()
 
   //check product title on cart page
-  const productTitleOnCartPage = await cartPage.getProductTitle()
+  const productTitleOnCartPage = await app.cart.getProductTitle()
   expect(productTitleOnCartPage).toContain(productTitle)
 
   //check product price on cart page
-  const priceValueOnCartPage = await cartPage.getProductPriceValue()
+  const priceValueOnCartPage = await app.cart.getProductPriceValue()
   expect(priceValueOnCartPage).toContain(priceValue)
 
   // go to checkout page
-  await cartPage.goToCheckout()
+  await app.cart.goToCheckout()
 
   //loaded checkout page
-  await checkoutPage.isLoaded()
+  await app.checkout.isLoaded()
 
   //fill user data
-  await checkoutPage.fillUserDetails(user)
+  await app.checkout.fillUserDetails(user)
 
   //check filled user data
-  await checkoutPage.verifyUserDetailsFilled(user)
+  await app.checkout.verifyUserDetailsFilled(user)
 
   //save user data
-  await checkoutPage.saveUserData()
+  await app.checkout.saveUserData()
 
   //check contact info
-  await checkoutPage.getContactCardInfo(user)
-  const {title, price} = await checkoutPage.getProductSummary()
+  await app.checkout.getContactCardInfo(user)
+  const {title, price} = await app.checkout.getProductSummary()
   expect(title).toContain(productTitle)
   expect(price).toContain(priceValue)
-  await checkoutPage.verifyCollectionBranchAddress(targetPostalCode)
+  await app.checkout.verifyCollectionBranchAddress(targetPostalCode)
 })
