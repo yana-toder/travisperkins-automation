@@ -76,7 +76,9 @@ export class RegistrationPage {
       .getByTestId('trade-professional-marketing-preferences')
       .first()
       .click()
+  }
 
+  async submitRegistration(): Promise<void> {
     await expect(this.page.getByTestId('create-account-button')).toBeVisible()
     await this.page.getByTestId('create-account-button').click()
     await expect(
@@ -86,29 +88,33 @@ export class RegistrationPage {
     ).toBeVisible()
   }
 
-  async login(user: User): Promise<void> {
+  async openLogin() {
     await this.page.locator('button', {hasText: 'Log In'}).click()
-    await this.page
+  }
+
+  async fillLoginForm(user: User): Promise<void> {
+    const frame = this.page
       .locator('[data-test-id="oauth-iframe"]')
       .contentFrame()
-      .getByRole('textbox', {name: 'Email'})
-      .fill(user.emailAddress)
-
+    await frame.getByRole('textbox', {name: 'Email'}).fill(user.emailAddress)
     if (user.password) {
-      await this.page
-        .locator('[data-test-id="oauth-iframe"]')
-        .contentFrame()
-        .getByRole('textbox', {name: 'Password'})
-        .fill(user.password)
+      await frame.getByRole('textbox', {name: 'Password'}).fill(user.password)
     }
-    await expect(
-      this.page
-        .frameLocator('[data-test-id="oauth-iframe"]')
-        .getByRole('button', {name: 'Log in'})
-    ).toBeVisible()
-    await this.page
-      .frameLocator('[data-test-id="oauth-iframe"]')
-      .getByRole('button', {name: 'Log in'})
-      .click()
+  }
+  async submitLogin(): Promise<void> {
+    const frame = this.page.frameLocator('[data-test-id="oauth-iframe"]')
+
+    await expect(frame.getByRole('button', {name: 'Log in'})).toBeVisible()
+    await frame.getByRole('button', {name: 'Log in'}).click()
+  }
+
+  async login(user: User): Promise<void> {
+    await this.openLogin()
+    await this.fillLoginForm(user)
+    await this.submitLogin()
+  }
+  //for api login
+  async goToLogin() {
+    await this.page.goto('https://www.travisperkins.co.uk/login')
   }
 }

@@ -18,7 +18,6 @@ test('user can register', async ({app}) => {
   await app.registration.fillUserDetails(user)
 
   await app.registration.fillTradeForm()
+  await app.registration.submitRegistration()
   await app.registration.login(user)
-
-  console.log(user)
 })

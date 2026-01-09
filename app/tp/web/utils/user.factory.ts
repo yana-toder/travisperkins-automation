@@ -26,5 +26,10 @@ export async function generateRegistrationUser(): Promise<User> {
       min: 100000000,
       max: 999999999,
     })}`,
+    address: {
+      line1: '5 Abbey Mews',
+      town: 'NORTHAMPTON',
+      postalCode: 'NN5 5LP',
+    },
   }
 }
