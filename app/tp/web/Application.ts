@@ -6,6 +6,7 @@ import {CartPage} from './pages/CartPage'
 import {CheckoutPage} from './pages/CheckoutPage'
 import {AddToCollectionPopup} from './components/AddToCollectionPopup'
 import {CollectionBranchPopup} from './components/CollectionBranchPopup'
+import {RegistrationPage} from './pages/RegistrationPage'
 
 export class Application {
   readonly home: HomePage
@@ -15,6 +16,7 @@ export class Application {
   readonly checkout: CheckoutPage
   readonly addToCollectionPopup: AddToCollectionPopup
   readonly collectionBranchPopup: CollectionBranchPopup
+  readonly registration: RegistrationPage
 
   constructor(private page: Page) {
     this.home = new HomePage(page)
@@ -24,5 +26,6 @@ export class Application {
     this.checkout = new CheckoutPage(page)
     this.addToCollectionPopup = new AddToCollectionPopup(page)
     this.collectionBranchPopup = new CollectionBranchPopup(page)
+    this.registration = new RegistrationPage(page)
   }
 }

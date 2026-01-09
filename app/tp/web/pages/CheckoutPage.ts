@@ -1,5 +1,6 @@
 import {expect, Page} from '@playwright/test'
 import {User} from '../types/User'
+import {getFullName} from '../helpers/userHelpers'
 export class CheckoutPage {
   constructor(private page: Page) {}
 
@@ -13,14 +14,14 @@ export class CheckoutPage {
   }
 
   async fillUserDetails(user: User): Promise<void> {
-    await this.getContactInput('contact-info-name').fill(user.fullName)
+    await this.getContactInput('contact-info-name').fill(getFullName(user))
     await this.getContactInput('contact-info-email').fill(user.emailAddress)
     await this.getContactInput('contact-info-phone').fill(user.mobileNumber)
   }
 
   async verifyUserDetailsFilled(user: User): Promise<void> {
     await expect(this.getContactInput('contact-info-name')).toHaveValue(
-      user.fullName
+      getFullName(user)
     )
 
     await expect(this.getContactInput('contact-info-email')).toHaveValue(
@@ -38,7 +39,7 @@ export class CheckoutPage {
 
   async getContactCardInfo(user: User): Promise<void> {
     await expect(this.page.getByTestId('card-full-name')).toContainText(
-      user.fullName
+      getFullName(user)
     )
     await expect(this.page.getByTestId('card-email')).toContainText(
       user.emailAddress

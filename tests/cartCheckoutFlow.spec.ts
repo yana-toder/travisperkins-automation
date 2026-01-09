@@ -1,8 +1,8 @@
 import {test, expect} from './fixtures'
-import {generateUser} from '../app/tp/web/utils/user.factory'
+import {generateCheckoutUser} from '../app/tp/web/utils/user.factory'
 
 test('cart checkout flow', async ({app}) => {
-  const user = await generateUser()
+  const user = await generateCheckoutUser()
 
   //open web
   await app.home.open()
