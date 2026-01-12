@@ -87,34 +87,4 @@ export class RegistrationPage {
         .locator('h1', {hasText: 'Registration successful'})
     ).toBeVisible()
   }
-
-  async openLogin() {
-    await this.page.locator('button', {hasText: 'Log In'}).click()
-  }
-
-  async fillLoginForm(user: User): Promise<void> {
-    const frame = this.page
-      .locator('[data-test-id="oauth-iframe"]')
-      .contentFrame()
-    await frame.getByRole('textbox', {name: 'Email'}).fill(user.emailAddress)
-    if (user.password) {
-      await frame.getByRole('textbox', {name: 'Password'}).fill(user.password)
-    }
-  }
-  async submitLogin(): Promise<void> {
-    const frame = this.page.frameLocator('[data-test-id="oauth-iframe"]')
-
-    await expect(frame.getByRole('button', {name: 'Log in'})).toBeVisible()
-    await frame.getByRole('button', {name: 'Log in'}).click()
-  }
-
-  async login(user: User): Promise<void> {
-    await this.openLogin()
-    await this.fillLoginForm(user)
-    await this.submitLogin()
-  }
-  //for api login
-  async goToLogin() {
-    await this.page.goto('https://www.travisperkins.co.uk/login')
-  }
 }
