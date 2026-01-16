@@ -7,6 +7,7 @@ export class LoginPage {
   private get authFrame() {
     return this.page.frameLocator('[data-test-id="oauth-iframe"]')
   }
+  //for UI
   async open() {
     await this.page.locator('button', {hasText: 'Log In'}).click()
   }
@@ -34,7 +35,7 @@ export class LoginPage {
     ).toBeVisible()
     await this.authFrame.getByRole('button', {name: 'Log in'}).click()
   }
-
+  // for UI
   async login(user: User): Promise<void> {
     await this.open()
     await this.fillCredentials(user)
