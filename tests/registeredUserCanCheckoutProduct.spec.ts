@@ -1,3 +1,4 @@
+import {getFullName} from '../app/tp/web/helpers/userHelpers'
 import {test} from './fixtures'
 
 test('registered user can checkout hire product', async ({
@@ -5,6 +6,15 @@ test('registered user can checkout hire product', async ({
   registeredUser,
 }) => {
   const targetPostalCode = 'NN5 5JR'
+  const {
+    firstName,
+    surname,
+    password = '',
+    emailAddress,
+    mobileNumber,
+    address: {line1, line2, town, postalCode},
+  } = registeredUser
+  console.log(registeredUser)
 
   await app.hire.open()
   await app.hire.goToProduct()
@@ -18,4 +28,21 @@ test('registered user can checkout hire product', async ({
   await app.hire.verifyDeliveryPopup(productTitle, priceValue)
   await app.hire.goToHire()
   await app.hireCart.isLoaded()
+  await app.hireCart.verifyProductInfo(productTitle, priceValue)
+  await app.hireCart.submit()
+  await app.hireCheckout.isLoaded()
+  await app.hireCheckout.verifyUserNameAndEmail(
+    getFullName(registeredUser),
+    emailAddress.toLowerCase(),
+  )
+  await app.hireCheckout.fillUserInfo(mobileNumber, line1, town, postalCode)
+  await app.hireCheckout.verifyUserInfoFilled(
+    mobileNumber,
+    line1,
+    town,
+    postalCode,
+  )
+
+  await app.hireCheckout.saveInfo()
+  await app.hireCheckout.submitOrder()
 })

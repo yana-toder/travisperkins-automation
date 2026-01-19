@@ -10,6 +10,7 @@ import {RegistrationPage} from './pages/RegistrationPage'
 import {LoginPage} from './pages/LoginPage'
 import {HirePage} from './pages/HirePage'
 import {HireCartPage} from './components/HireCartPage'
+import {HireCheckoutPage} from './pages/HireCheckoutPage'
 
 export class Application {
   readonly home: HomePage
@@ -23,6 +24,7 @@ export class Application {
   readonly login: LoginPage
   readonly hire: HirePage
   readonly hireCart: HireCartPage
+  readonly hireCheckout: HireCheckoutPage
 
   constructor(private page: Page) {
     this.home = new HomePage(page)
@@ -36,5 +38,6 @@ export class Application {
     this.login = new LoginPage(page)
     this.hire = new HirePage(page)
     this.hireCart = new HireCartPage(page)
+    this.hireCheckout = new HireCheckoutPage(page)
   }
 }
