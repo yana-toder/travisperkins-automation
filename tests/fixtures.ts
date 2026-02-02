@@ -1,29 +1,46 @@
-import {test as base} from '@playwright/test'
+import {test as base, Page, BrowserContext} from '@playwright/test'
 import {Application} from '../app/tp/web/Application'
-import {User} from '../app/tp/web/types/User'
-import {generateRegistrationUser} from '../app/tp/web/utils/user.factory'
-import {registerUserViaApi} from '../app/tp/api/registration.api'
 
-type Fixtures = {
-  app: Application
-  registeredUser: User
+//type OpenPageFixture = {
+//  app: Application
+//}
+
+//export const open = base.extend<OpenPageFixture>({
+//  app: async ({page}, use) => {
+//    const app = new Application(page)
+//    await app.home.open()
+//    await use(app)
+//  },
+//})
+
+type AuthFixtures = {
+  guestApp: Application
+  authenticatedApp: Application
 }
 
-export const test = base.extend<Fixtures>({
-  app: async ({page}, use) => {
+export const test = base.extend<AuthFixtures>({
+  guestApp: async ({browser}, use) => {
+    const context = await browser.newContext({
+      storageState: 'playwright/.auth/cookies.json',
+    })
+    const page = await context.newPage()
     const app = new Application(page)
     await app.home.open()
     await use(app)
+
+    await context.close()
   },
-  registeredUser: async ({request, app}, use) => {
-    const user = await generateRegistrationUser()
-    await registerUserViaApi(request, user)
-    await app.login.goToLogin()
-    await app.login.waitForIframe()
-    await app.login.fillCredentials(user)
-    await app.login.submit()
-    await app.login.expectUserLoggedIn(user)
-    await use(user)
+
+  authenticatedApp: async ({browser}, use) => {
+    const context = await browser.newContext({
+      storageState: 'playwright/.auth/user.json',
+    })
+    const page = await context.newPage()
+    const app = new Application(page)
+    await app.home.open()
+    await use(app)
+
+    await context.close()
   },
 })
 

@@ -9,9 +9,9 @@ export class SearchResultPage {
   }
 
   async isLoaded(): Promise<void> {
-    await expect(this.page.getByTestId('pdp-wrapper')).toBeVisible()
+    await expect(this.page.getByTestId('plp-wrapper')).toBeVisible()
     await expect(
-      this.page.getByTestId('product-image-main').first()
+      this.page.getByTestId('product-card-image').first(),
     ).toBeVisible()
   }
   async openProductFromList() {
@@ -25,13 +25,16 @@ export class SearchResultPage {
 
   async verifyProductTitleOnPDP(title: string) {
     await expect(
-      this.page.getByTestId('pdp-wrapper').getByTestId('product-name').first()
+      this.page
+        .getByTestId('product')
+        .getByTestId('product-card-title')
+        .first(),
     ).toContainText(title)
   }
 
   async verifyProductTitleOnQuoteList(title: string) {
     await expect(
-      this.page.getByTestId('item-value').getByTestId('product-name')
+      this.page.getByTestId('item-value').getByTestId('product-name'),
     ).toContainText(title)
   }
 
@@ -42,7 +45,7 @@ export class SearchResultPage {
   async removeProductFromQuoteList() {
     await this.page.getByTestId('remove-button').click()
     await expect(this.page.getByTestId('empty-quote-list')).toContainText(
-      'Your quote list is empty'
+      'Your quote list is empty',
     )
   }
 }

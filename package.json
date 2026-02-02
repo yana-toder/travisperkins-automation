@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:setup": "npx playwright test cookies.setup.spec.ts && npx playwright test auth.setup.spec.ts",
+    "test": "npm run test:setup && npx playwright test",
+    "test:ui": "npx playwright test --ui"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -11,9 +15,7 @@
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.1"
   },
-  
   "dependencies": {
     "@faker-js/faker": "^10.2.0"
   }
-  
 }

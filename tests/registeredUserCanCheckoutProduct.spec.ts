@@ -1,11 +1,14 @@
+import {Application} from '../app/tp/web/Application'
 import {getFullName} from '../app/tp/web/helpers/userHelpers'
+import {getCurrentUser} from '../app/tp/web/utils/currentUser'
 import {test} from './fixtures'
 
 test('registered user can checkout hire product', async ({
-  app,
-  registeredUser,
+  authenticatedApp,
 }) => {
   const targetPostalCode = 'NN5 5JR'
+  const user = getCurrentUser()
+
   const {
     firstName,
     surname,
@@ -13,36 +16,40 @@ test('registered user can checkout hire product', async ({
     emailAddress,
     mobileNumber,
     address: {line1, line2, town, postalCode},
-  } = registeredUser
-  console.log(registeredUser)
+  } = user
 
-  await app.hire.open()
-  await app.hire.goToProduct()
-  const productTitle = await app.hire.getProductTitle()
-  const priceValue = await app.hire.getProductPriceValuePerDay()
-  await app.hire.addForHire(targetPostalCode)
-  await app.hire.verifyBasketPopup(productTitle, priceValue)
-  await app.hire.selectHireDate(3)
-  await app.hire.checkSelectedDate()
-  await app.hire.addToDelivery()
-  await app.hire.verifyDeliveryPopup(productTitle, priceValue)
-  await app.hire.goToHire()
-  await app.hireCart.isLoaded()
-  await app.hireCart.verifyProductInfo(productTitle, priceValue)
-  await app.hireCart.submit()
-  await app.hireCheckout.isLoaded()
-  await app.hireCheckout.verifyUserNameAndEmail(
-    getFullName(registeredUser),
+  await authenticatedApp.hire.open()
+  await authenticatedApp.hire.goToProduct()
+  const productTitle = await authenticatedApp.hire.getProductTitle()
+  const priceValue = await authenticatedApp.hire.getProductPriceValuePerDay()
+  await authenticatedApp.hire.addForHire(targetPostalCode)
+  await authenticatedApp.hire.verifyBasketPopup(productTitle, priceValue)
+  await authenticatedApp.hire.selectHireDate(3)
+  await authenticatedApp.hire.checkSelectedDate()
+  await authenticatedApp.hire.addToDelivery()
+  await authenticatedApp.hire.verifyDeliveryPopup(productTitle, priceValue)
+  await authenticatedApp.hire.goToHire()
+  await authenticatedApp.hireCart.isLoaded()
+  await authenticatedApp.hireCart.verifyProductInfo(productTitle, priceValue)
+  await authenticatedApp.hireCart.submit()
+  await authenticatedApp.hireCheckout.isLoaded()
+  await authenticatedApp.hireCheckout.verifyUserNameAndEmail(
+    getFullName(user),
     emailAddress.toLowerCase(),
   )
-  await app.hireCheckout.fillUserInfo(mobileNumber, line1, town, postalCode)
-  await app.hireCheckout.verifyUserInfoFilled(
+  await authenticatedApp.hireCheckout.fillUserInfo(
+    mobileNumber,
+    line1,
+    town,
+    postalCode,
+  )
+  await authenticatedApp.hireCheckout.verifyUserInfoFilled(
     mobileNumber,
     line1,
     town,
     postalCode,
   )
 
-  await app.hireCheckout.saveInfo()
-  await app.hireCheckout.submitOrder()
+  await authenticatedApp.hireCheckout.saveInfo()
+  await authenticatedApp.hireCheckout.submitOrder()
 })

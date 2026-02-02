@@ -6,14 +6,15 @@ export class AddToCollectionPopup {
 
   async openPopup() {
     await this.page
-      .getByTestId('product-detail')
+      .getByTestId('product')
       .getByTestId('add-to-collection-btn')
+      .first()
       .click()
   }
 
   async isLoaded() {
     await expect(
-      this.page.getByTestId('add-to-basket-popup-wrapper')
+      this.page.getByTestId('add-to-basket-popup-wrapper'),
     ).toBeVisible()
   }
 

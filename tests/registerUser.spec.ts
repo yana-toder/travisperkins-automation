@@ -1,7 +1,9 @@
 import {test, expect} from './fixtures'
 import {generateRegistrationUser} from '../app/tp/web/utils/user.factory'
+import {Application} from '../app/tp/web/Application'
 
-test('user can register', async ({app}) => {
+test('user can register', async ({guestPage}) => {
+  const app = new Application(guestPage)
   const user = await generateRegistrationUser()
 
   await app.home.open()
@@ -19,5 +21,4 @@ test('user can register', async ({app}) => {
 
   await app.registration.fillTradeForm()
   await app.registration.submitRegistration()
-  await app.registration.login(user)
 })
