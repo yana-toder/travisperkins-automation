@@ -1,5 +1,4 @@
 import {defineConfig, devices} from '@playwright/test'
-import {setgroups} from 'process'
 
 /**
  * Read environment variables from file.

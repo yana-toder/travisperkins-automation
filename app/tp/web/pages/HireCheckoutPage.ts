@@ -1,7 +1,10 @@
 import {expect, Page} from '@playwright/test'
 
 export class HireCheckoutPage {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async isLoaded() {
     await expect(this.page.getByTestId('step-item-switch-1')).toBeVisible()

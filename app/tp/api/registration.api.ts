@@ -1,9 +1,9 @@
 import {APIRequestContext, expect} from '@playwright/test'
-import {User} from '../web/types/User'
+import {RegisteredUser} from '../web/types/User'
 
 export async function registerUserViaApi(
   request: APIRequestContext,
-  user: User
+  user: RegisteredUser,
 ): Promise<void> {
   const response = await request.post(
     '/graphql?op=tpplcTradeProfessionalAccountApplicationSubmit',
@@ -48,13 +48,13 @@ export async function registerUserViaApi(
           },
         },
       },
-    }
+    },
   )
 
   expect(response.ok()).toBeTruthy()
 
   const body = await response.json()
   expect(
-    body.data.tpplcTradeProfessionalAccountApplicationSubmit.id
+    body.data.tpplcTradeProfessionalAccountApplicationSubmit.id,
   ).toBeTruthy()
 }

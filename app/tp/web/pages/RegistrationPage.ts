@@ -2,7 +2,10 @@ import {expect, Page} from '@playwright/test'
 import {User} from '../types/User'
 
 export class RegistrationPage {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async goToActivateAccount() {
     await this.page.getByTestId('header-account-button').click()
@@ -10,7 +13,7 @@ export class RegistrationPage {
 
   async isLoaded(): Promise<void> {
     await expect(
-      this.page.getByTestId('sub-header-wrapper').locator('h1')
+      this.page.getByTestId('sub-header-wrapper').locator('h1'),
     ).toBeVisible()
   }
 
@@ -84,7 +87,7 @@ export class RegistrationPage {
     await expect(
       this.page
         .getByTestId('sub-header-trade-professional-wrapper')
-        .locator('h1', {hasText: 'Registration successful'})
+        .locator('h1', {hasText: 'Registration successful'}),
     ).toBeVisible()
   }
 }

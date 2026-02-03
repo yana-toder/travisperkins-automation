@@ -2,7 +2,10 @@ import {expect, Page} from '@playwright/test'
 import {parseAriaLabelToDate} from '../helpers/dateHelpers'
 import {formatDateForUI} from '../helpers/dateHelpers'
 export class DatePicker {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   public fromDate!: Date
   public toDate!: Date
@@ -15,7 +18,7 @@ export class DatePicker {
   }
   private get availableDays() {
     return this.datePicker.locator(
-      '.react-datepicker__day[aria-disabled="false"]'
+      '.react-datepicker__day[aria-disabled="false"]',
     )
   }
 
@@ -60,11 +63,11 @@ export class DatePicker {
     const toText = formatDateForUI(this.toDate)
 
     await expect(
-      this.dateButtonInput.locator('span', {hasText: fromText})
+      this.dateButtonInput.locator('span', {hasText: fromText}),
     ).toBeVisible()
 
     await expect(
-      this.dateButtonInput.locator('span', {hasText: toText})
+      this.dateButtonInput.locator('span', {hasText: toText}),
     ).toBeVisible()
   }
 }

@@ -4,10 +4,16 @@ export type User = {
   password?: string
   emailAddress: string
   mobileNumber: string
-  address: {
-    line1: string
-    line2?: string
-    town: string
-    postalCode: string
-  }
+  address?: Address
+}
+export type Address = {
+  line1: string
+  line2?: string
+  town: string
+  postalCode: string
+}
+
+export type RegisteredUser = User & {
+  password: string
+  address: Address
 }

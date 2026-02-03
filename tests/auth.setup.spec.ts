@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test'
+import {test} from '@playwright/test'
 import {generateRegistrationUser} from '../app/tp/web/utils/user.factory'
 import {registerUserViaApi} from '../app/tp/api/registration.api'
 import {Application} from '../app/tp/web/Application'

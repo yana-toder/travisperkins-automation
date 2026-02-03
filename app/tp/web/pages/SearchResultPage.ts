@@ -3,8 +3,9 @@ import {AddVariantToQuote} from '../components/AddVariantToQuote'
 
 export class SearchResultPage {
   readonly addVariantToQuote: AddVariantToQuote
-
-  constructor(private page: Page) {
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
     this.addVariantToQuote = new AddVariantToQuote(this.page)
   }
 

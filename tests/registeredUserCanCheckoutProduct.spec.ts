@@ -1,4 +1,3 @@
-import {Application} from '../app/tp/web/Application'
 import {getFullName} from '../app/tp/web/helpers/userHelpers'
 import {getCurrentUser} from '../app/tp/web/utils/currentUser'
 import {test} from './fixtures'
@@ -8,14 +7,13 @@ test('registered user can checkout hire product', async ({
 }) => {
   const targetPostalCode = 'NN5 5JR'
   const user = getCurrentUser()
-
+  if (!user.address) {
+    throw new Error('Registered user must have address')
+  }
   const {
-    firstName,
-    surname,
-    password = '',
     emailAddress,
     mobileNumber,
-    address: {line1, line2, town, postalCode},
+    address: {line1, town, postalCode},
   } = user
 
   await authenticatedApp.hire.open()

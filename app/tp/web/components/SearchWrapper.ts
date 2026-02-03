@@ -1,7 +1,10 @@
 import {expect, Page} from '@playwright/test'
 
 export class SearchWrapper {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async isLoaded() {
     await expect(this.page.getByTestId('header-search-button')).toBeVisible()

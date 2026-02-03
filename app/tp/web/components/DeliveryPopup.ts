@@ -1,7 +1,10 @@
 import {Page} from '@playwright/test'
 
 export class DeliveryPopup {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async fillDeliveryPopup(targetPostalCode: string) {
     await this.page

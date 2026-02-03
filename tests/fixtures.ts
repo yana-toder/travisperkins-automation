@@ -1,17 +1,5 @@
-import {test as base, Page, BrowserContext} from '@playwright/test'
+import {test as base} from '@playwright/test'
 import {Application} from '../app/tp/web/Application'
-
-//type OpenPageFixture = {
-//  app: Application
-//}
-
-//export const open = base.extend<OpenPageFixture>({
-//  app: async ({page}, use) => {
-//    const app = new Application(page)
-//    await app.home.open()
-//    await use(app)
-//  },
-//})
 
 type AuthFixtures = {
   guestApp: Application

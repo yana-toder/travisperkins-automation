@@ -1,9 +1,11 @@
-import {expect, Page, Frame} from '@playwright/test'
+import {expect, Page} from '@playwright/test'
 import {User} from '../types/User'
 
 export class LoginPage {
-  constructor(private page: Page) {}
-
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
   private get authFrame() {
     return this.page.frameLocator('[data-test-id="oauth-iframe"]')
   }
@@ -14,7 +16,7 @@ export class LoginPage {
 
   async waitForIframe(): Promise<void> {
     await expect(
-      this.authFrame.getByRole('textbox', {name: 'Email'})
+      this.authFrame.getByRole('textbox', {name: 'Email'}),
     ).toBeVisible()
   }
 
@@ -31,7 +33,7 @@ export class LoginPage {
 
   async submit(): Promise<void> {
     await expect(
-      this.authFrame.getByRole('button', {name: 'Log in'})
+      this.authFrame.getByRole('button', {name: 'Log in'}),
     ).toBeVisible()
     await this.authFrame.getByRole('button', {name: 'Log in'}).click()
   }
@@ -48,7 +50,7 @@ export class LoginPage {
 
   async expectUserLoggedIn(user: User): Promise<void> {
     await expect(
-      this.page.getByTestId('header-account-button').getByTestId('link-title')
+      this.page.getByTestId('header-account-button').getByTestId('link-title'),
     ).toHaveText(`${user.firstName} ${user.surname}`)
   }
 }

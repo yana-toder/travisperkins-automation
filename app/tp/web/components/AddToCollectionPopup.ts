@@ -2,7 +2,10 @@ import {expect, Page} from '@playwright/test'
 import {extractPriceValue} from '../utils/price.utils'
 
 export class AddToCollectionPopup {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async openPopup() {
     await this.page
