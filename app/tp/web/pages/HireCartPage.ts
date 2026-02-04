@@ -11,7 +11,7 @@ export class HireCartPage {
     await expect(this.page.getByTestId('basket-card')).toBeVisible()
   }
 
-  async verifyProductInfo(productTitle: string, _priceValue: string) {
+  async verifyProductInfo(productTitle: string) {
     await expect(this.page.getByTestId('basket-card-name')).toContainText(
       productTitle,
     )

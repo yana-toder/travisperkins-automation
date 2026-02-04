@@ -9,7 +9,7 @@ import {CollectionBranchPopup} from './components/CollectionBranchPopup'
 import {RegistrationPage} from './pages/RegistrationPage'
 import {LoginPage} from './pages/LoginPage'
 import {HirePage} from './pages/HirePage'
-import {HireCartPage} from './components/HireCartPage'
+import {HireCartPage} from './pages/HireCartPage'
 import {HireCheckoutPage} from './pages/HireCheckoutPage'
 
 export class Application {
