@@ -1,5 +1,4 @@
 import {defineConfig, devices} from '@playwright/test'
-import {setgroups} from 'process'
 
 /**
  * Read environment variables from file.
@@ -19,27 +18,20 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  //  timeout: 10000,
-  //  globalTimeout: 30000,
   use: {
     baseURL: 'https://www.travisperkins.co.uk/',
     headless: false,
     testIdAttribute: 'data-test-id',
     trace: 'on-first-retry',
-    //actionTimeout: 4000,
   },
 
   /* Configure projects for major browsers */
   projects: [
-    // Setup project
-    {name: 'setup', testMatch: /.*\.setup\.ts/},
     {
-      name: 'chromium',
+      name: 'regression',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/cookies.json',
       },
-      dependencies: ['setup'],
     },
   ],
 

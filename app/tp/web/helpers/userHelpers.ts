@@ -1,4 +1,4 @@
-import {User} from '../utils/user.factory'
+import {User} from '../types/User'
 
 export function getFullName(user: User): string {
   return `${user.firstName} ${user.surname}`

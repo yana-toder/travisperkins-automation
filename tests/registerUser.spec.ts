@@ -1,24 +1,21 @@
-import {test, expect} from './fixtures'
+import {test} from './fixtures'
 import {generateRegistrationUser} from '../app/tp/web/utils/user.factory'
 
-test('user can register', async ({app}) => {
+test('user can register', async ({guestApp}) => {
   const user = await generateRegistrationUser()
 
-  await app.home.open()
-  await app.home.isLoaded()
+  await guestApp.home.isLoaded()
 
-  await app.registration.goToActivateAccount()
-  await app.registration.isLoaded()
+  await guestApp.registration.goToActivateAccount()
+  await guestApp.registration.isLoaded()
 
-  await app.registration.goToCreateAccount()
-  await app.registration.createAccountIsLoaded()
+  await guestApp.registration.goToCreateAccount()
+  await guestApp.registration.createAccountIsLoaded()
 
-  await app.registration.clickOnCreateAccount()
+  await guestApp.registration.clickOnCreateAccount()
 
-  await app.registration.fillUserDetails(user)
+  await guestApp.registration.fillUserDetails(user)
 
-  await app.registration.fillTradeForm()
-  await app.registration.login(user)
-
-  console.log(user)
+  await guestApp.registration.fillTradeForm()
+  await guestApp.registration.submitRegistration()
 })

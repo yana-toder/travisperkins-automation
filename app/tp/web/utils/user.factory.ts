@@ -1,5 +1,5 @@
 import {generateValidPassword} from '../helpers/userHelpers'
-import {User} from '../types/User'
+import {RegisteredUser, User} from '../types/User'
 
 export async function generateCheckoutUser(): Promise<User> {
   const {faker} = await import('@faker-js/faker')
@@ -14,7 +14,7 @@ export async function generateCheckoutUser(): Promise<User> {
   }
 }
 
-export async function generateRegistrationUser(): Promise<User> {
+export async function generateRegistrationUser(): Promise<RegisteredUser> {
   const {faker} = await import('@faker-js/faker')
 
   return {
@@ -26,5 +26,10 @@ export async function generateRegistrationUser(): Promise<User> {
       min: 100000000,
       max: 999999999,
     })}`,
+    address: {
+      line1: '5 Abbey Mews',
+      town: 'NORTHAMPTON',
+      postalCode: 'NN5 5LP',
+    },
   }
 }

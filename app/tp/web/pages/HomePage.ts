@@ -5,8 +5,10 @@ import {DeliveryPopup} from '../components/DeliveryPopup'
 export class HomePage {
   readonly searchWrapper: SearchWrapper
   readonly deliveryPopup: DeliveryPopup
+  readonly page: Page
 
-  constructor(private page: Page) {
+  constructor(page: Page) {
+    this.page = page
     this.searchWrapper = new SearchWrapper(this.page)
     this.deliveryPopup = new DeliveryPopup(this.page)
   }

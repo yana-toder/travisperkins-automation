@@ -2,7 +2,10 @@ import {expect, Page} from '@playwright/test'
 import {extractPriceValue} from '../utils/price.utils'
 
 export class CartPage {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async open(): Promise<void> {
     await this.page.getByTestId('go-to-basket-button').click()
@@ -13,7 +16,7 @@ export class CartPage {
     await expect(
       this.page
         .getByTestId('mini-basket-icon')
-        .getByTestId('miniBasket-basket-count')
+        .getByTestId('miniBasket-basket-count'),
     ).toBeVisible()
   }
 

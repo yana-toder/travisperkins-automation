@@ -1,7 +1,10 @@
 import {expect, Page} from '@playwright/test'
 
 export class AddVariantToQuote {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async isLoaded(): Promise<void> {
     await expect(this.page.getByTestId('product-detail')).toBeVisible()

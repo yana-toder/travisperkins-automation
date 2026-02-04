@@ -2,7 +2,10 @@ import {expect, Page} from '@playwright/test'
 import {User} from '../types/User'
 
 export class RegistrationPage {
-  constructor(private page: Page) {}
+  readonly page: Page
+  constructor(page: Page) {
+    this.page = page
+  }
 
   async goToActivateAccount() {
     await this.page.getByTestId('header-account-button').click()
@@ -10,7 +13,7 @@ export class RegistrationPage {
 
   async isLoaded(): Promise<void> {
     await expect(
-      this.page.getByTestId('sub-header-wrapper').locator('h1')
+      this.page.getByTestId('sub-header-wrapper').locator('h1'),
     ).toBeVisible()
   }
 
@@ -76,39 +79,15 @@ export class RegistrationPage {
       .getByTestId('trade-professional-marketing-preferences')
       .first()
       .click()
+  }
 
+  async submitRegistration(): Promise<void> {
     await expect(this.page.getByTestId('create-account-button')).toBeVisible()
     await this.page.getByTestId('create-account-button').click()
     await expect(
       this.page
         .getByTestId('sub-header-trade-professional-wrapper')
-        .locator('h1', {hasText: 'Registration successful'})
+        .locator('h1', {hasText: 'Registration successful'}),
     ).toBeVisible()
-  }
-
-  async login(user: User): Promise<void> {
-    await this.page.locator('button', {hasText: 'Log In'}).click()
-    await this.page
-      .locator('[data-test-id="oauth-iframe"]')
-      .contentFrame()
-      .getByRole('textbox', {name: 'Email'})
-      .fill(user.emailAddress)
-
-    if (user.password) {
-      await this.page
-        .locator('[data-test-id="oauth-iframe"]')
-        .contentFrame()
-        .getByRole('textbox', {name: 'Password'})
-        .fill(user.password)
-    }
-    await expect(
-      this.page
-        .frameLocator('[data-test-id="oauth-iframe"]')
-        .getByRole('button', {name: 'Log in'})
-    ).toBeVisible()
-    await this.page
-      .frameLocator('[data-test-id="oauth-iframe"]')
-      .getByRole('button', {name: 'Log in'})
-      .click()
   }
 }
