@@ -11,14 +11,16 @@ export class HireCartPage {
     await expect(this.page.getByTestId('basket-card')).toBeVisible()
   }
 
-  async verifyProductInfo(productTitle: string) {
+  async verifyProductInfo(productTitle: string, productPrice: string) {
     await expect(this.page.getByTestId('basket-card-name')).toContainText(
       productTitle,
     )
-    const price = await this.page
+    const priceValue = await this.page
       .getByTestId('hire-basket-price-period')
       .innerText()
-    return extractPriceValue(price)
+    const price = extractPriceValue(priceValue)
+
+    expect(price).toBe(productPrice)
   }
 
   async submit() {
