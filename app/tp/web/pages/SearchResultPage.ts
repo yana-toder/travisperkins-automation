@@ -10,10 +10,8 @@ export class SearchResultPage {
   }
 
   async isLoaded(): Promise<void> {
-    await expect(this.page.getByTestId('plp-wrapper')).toBeVisible()
-    await expect(
-      this.page.getByTestId('product-card-image').first(),
-    ).toBeVisible()
+    await expect(this.page.getByTestId('plp-list')).toBeVisible()
+    await expect(this.page.getByTestId('product').first()).toBeVisible()
   }
   async openProductFromList() {
     const title = await this.page
@@ -40,7 +38,7 @@ export class SearchResultPage {
   }
 
   async addForCollectionFirstProduct() {
-    await this.page.getByTestId('add-to-quote-list').click()
+    await this.page.getByTestId('add-to-collection-btn').first().click()
     await expect(this.page.getByTestId('quote-list-button')).toBeVisible()
   }
   async removeProductFromQuoteList() {

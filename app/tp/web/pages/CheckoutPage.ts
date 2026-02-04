@@ -54,10 +54,12 @@ export class CheckoutPage {
 
   async getProductSummary(): Promise<{title: string; price: string}> {
     const title = await this.page.getByTestId('name-checkout-new').innerText()
-    const price = await this.page
+    const rawPrice = await this.page
       .getByTestId('line-total-inc-vat')
       .locator('h3', {hasText: /\d/})
       .innerText()
+
+    const price = rawPrice.replace(/[^\d.]/g, '')
 
     return {title, price}
   }
