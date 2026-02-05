@@ -8,27 +8,18 @@ export class ProductPage {
   }
 
   async isLoaded(): Promise<void> {
-    await expect(
-      this.page
-        .getByTestId('product')
-        .getByTestId('add-to-collection-btn')
-        .first(),
-    ).toBeVisible()
+    await expect(this.page.getByTestId('pdp-wrapper')).toBeVisible()
   }
 
   async getProductPriceValue(): Promise<string> {
-    const productPrice = await this.page
-      .getByTestId('main-price')
-      .first()
-      .innerText()
+    const productPrice = await this.page.getByTestId('main-price').innerText()
     return extractPriceValue(productPrice)
   }
 
   async addToCollection(): Promise<void> {
     await this.page
-      .getByTestId('product')
+      .getByTestId('product-detail')
       .getByTestId('add-to-collection-btn')
-      .first()
       .click()
   }
 

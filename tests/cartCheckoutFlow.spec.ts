@@ -13,12 +13,11 @@ test('cart checkout flow', async ({guestApp}) => {
   await guestApp.home.searchWrapper.searchProduct(targetQuery)
 
   //open product and compare titles
-  const productTitle = await guestApp.searchResult.openProductFromList()
+  const productTitle = await guestApp.searchResult.getFirstProductTitle()
   await guestApp.searchResult.isLoaded()
-  await guestApp.searchResult.verifyProductTitleOnPDP(productTitle)
-
-  //loaded product page
+  await guestApp.searchResult.openFirstProduct()
   await guestApp.product.isLoaded()
+  await guestApp.searchResult.verifyProductTitleOnPDP(productTitle)
 
   //get price
   const priceValue = await guestApp.product.getProductPriceValue()
@@ -30,7 +29,7 @@ test('cart checkout flow', async ({guestApp}) => {
     targetPostalCode,
   )
 
-  //add to collection
+  //add to collection here is the issue !
   await guestApp.addToCollectionPopup.openPopup()
   await guestApp.addToCollectionPopup.isLoaded()
 

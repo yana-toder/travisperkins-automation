@@ -13,7 +13,7 @@ export const test = base.extend<AuthFixtures>({
     })
     const page = await context.newPage()
     const app = new Application(page)
-    await app.home.open()
+    //await app.home.open()
     await use(app)
 
     await context.close()
@@ -25,7 +25,7 @@ export const test = base.extend<AuthFixtures>({
     })
     const page = await context.newPage()
     const app = new Application(page)
-    await app.home.open()
+    // await app.home.open()
     await use(app)
 
     await context.close()
