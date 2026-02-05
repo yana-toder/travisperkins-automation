@@ -7,10 +7,12 @@ export class CollectionBranchPopup {
   }
 
   async fillCollectionBranchPopup(targetPostalCode: string) {
-    await this.page
-      .getByTestId('location-input-wr')
-      .getByTestId('input-component')
-      .fill(targetPostalCode)
+    const popup = this.page.getByTestId('location-input-wr')
+    if ((await popup.count()) === 0) {
+      return
+    }
+
+    await popup.getByTestId('input-component').fill(targetPostalCode)
 
     await this.page
       .getByTestId('address-item')

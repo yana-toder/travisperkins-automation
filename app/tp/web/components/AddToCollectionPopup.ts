@@ -9,9 +9,8 @@ export class AddToCollectionPopup {
 
   async openPopup() {
     await this.page
-      .getByTestId('product')
+      .getByTestId('product-detail')
       .getByTestId('add-to-collection-btn')
-      .first()
       .click()
   }
 

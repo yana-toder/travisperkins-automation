@@ -11,23 +11,29 @@ export class SearchResultPage {
 
   async isLoaded(): Promise<void> {
     await expect(this.page.getByTestId('plp-list')).toBeVisible()
-    await expect(this.page.getByTestId('product').first()).toBeVisible()
+    await expect(
+      this.page.getByTestId('product-card-image').first(),
+    ).toBeVisible()
   }
-  async openProductFromList() {
+  async getFirstProductTitle() {
     const title = await this.page
       .getByTestId('product-card-title')
       .first()
       .innerText()
-    await this.page.getByTestId('product').first().click()
     return title.trim()
+  }
+
+  async openFirstProduct() {
+    await this.page
+      .getByTestId('plp-list')
+      .getByTestId('product-card-image')
+      .first()
+      .click()
   }
 
   async verifyProductTitleOnPDP(title: string) {
     await expect(
-      this.page
-        .getByTestId('product')
-        .getByTestId('product-card-title')
-        .first(),
+      this.page.getByTestId('product-name').locator('h1'),
     ).toContainText(title)
   }
 
@@ -37,9 +43,9 @@ export class SearchResultPage {
     ).toContainText(title)
   }
 
-  async addForCollectionFirstProduct() {
-    await this.page.getByTestId('add-to-collection-btn').first().click()
-    await expect(this.page.getByTestId('quote-list-button')).toBeVisible()
+  async addForCollection() {
+    await this.page.getByTestId('add-to-quote-list').click()
+    await expect(this.page.getByTestId('count-item')).toBeVisible()
   }
   async removeProductFromQuoteList() {
     await this.page.getByTestId('remove-button').click()

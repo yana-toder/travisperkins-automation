@@ -3,7 +3,7 @@ import {generateRegistrationUser} from '../app/tp/web/utils/user.factory'
 
 test('user can register', async ({guestApp}) => {
   const user = await generateRegistrationUser()
-
+  await guestApp.home.open()
   await guestApp.home.isLoaded()
 
   await guestApp.registration.goToActivateAccount()

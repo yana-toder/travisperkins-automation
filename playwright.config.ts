@@ -20,7 +20,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'https://www.travisperkins.co.uk/',
-    headless: false,
+    headless: !!process.env.CI,
     testIdAttribute: 'data-test-id',
     trace: 'on-first-retry',
   },

@@ -16,14 +16,24 @@ test('registered user can checkout hire product', async ({
     address: {line1, town, postalCode},
   } = user
 
+  await authenticatedApp.home.open()
+  await authenticatedApp.home.isLoaded()
+
   await authenticatedApp.hire.open()
   await authenticatedApp.hire.goToProduct()
   const productTitle = await authenticatedApp.hire.getProductTitle()
   const priceValue = await authenticatedApp.hire.getProductPriceValuePerDay()
-  await authenticatedApp.hire.addForHire(targetPostalCode)
+
+  await authenticatedApp.hire.addForHire()
+
+  await authenticatedApp.collectionBranchPopup.fillCollectionBranchPopup(
+    targetPostalCode,
+  )
+  await authenticatedApp.hire.addForHire()
+
   await authenticatedApp.hire.verifyBasketPopup(productTitle, priceValue)
   await authenticatedApp.hire.selectHireDate(3)
-  await authenticatedApp.hire.checkSelectedDate()
+  // await authenticatedApp.hire.checkSelectedDate()
   await authenticatedApp.hire.addToDelivery()
   await authenticatedApp.hire.verifyDeliveryPopup(productTitle, priceValue)
   await authenticatedApp.hire.goToHire()

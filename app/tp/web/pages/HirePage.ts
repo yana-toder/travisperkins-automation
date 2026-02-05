@@ -20,7 +20,7 @@ export class HirePage {
     await expect(
       this.page
         .getByTestId('nav-menu-bar')
-        .getByRole('link', {name: 'Hire', exact: true})
+        .getByRole('link', {name: 'Hire', exact: true}),
     ).toBeVisible()
     await this.page.getByRole('link', {name: 'Hire', exact: true}).click()
     await expect(this.page.locator('h1', {hasText: 'Tool Hire'})).toBeVisible()
@@ -30,7 +30,7 @@ export class HirePage {
     await expect(
       this.page
         .getByTestId('configurable-row')
-        .locator('a[href*="breaking-drilling-and-fixing-hire"]')
+        .locator('a[href*="breaking-drilling-and-fixing-hire"]'),
     ).toBeVisible()
     await this.page
       .getByTestId('configurable-row')
@@ -56,28 +56,24 @@ export class HirePage {
     return extractPriceValue(productPrice)
   }
 
-  async addForHire(targetPostalCode: string) {
-    const addForHireButton = this.page
+  async addForHire() {
+    await this.page
       .getByTestId('product')
       .first()
       .getByTestId('add-for-hire-button')
-
-    await addForHireButton.click()
-    //fill collection popup
-    await this.collectionBranchPopup.fillCollectionBranchPopup(targetPostalCode)
-    await addForHireButton.click()
+      .click()
 
     await expect(
-      this.page.getByTestId('add-to-basket-popup-wrapper')
+      this.page.getByTestId('add-to-basket-popup-wrapper'),
     ).toBeVisible()
   }
 
   async verifyBasketPopup(productTitle: string, priceValue: string) {
     await expect(this.page.getByTestId('product-name')).toContainText(
-      productTitle
+      productTitle,
     )
     await expect(this.page.getByTestId('product-actual-price')).toContainText(
-      priceValue
+      priceValue,
     )
   }
 
@@ -93,10 +89,10 @@ export class HirePage {
   async addToDelivery() {
     await this.page.getByTestId('add-for-delivery-button').click()
     await expect(
-      this.page.getByTestId('add-to-basket-popup-wrapper')
+      this.page.getByTestId('add-to-basket-popup-wrapper'),
     ).toBeVisible()
     await expect(this.page.getByTestId('add-product-info')).toContainText(
-      'Items added to Hire basket for delivery'
+      'Items added to Hire basket for delivery',
     )
   }
 
